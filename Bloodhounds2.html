@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"> 
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- jQuery -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<style>   
+
+        body {
+           margin-top: 20px;
+            padding: 0;            
+            background-color: black;
+            color: white;
+        }
+        h2 {
+           display: none;
+           visibility: hidden;
+           }
+
+  iframe * {
+           display: none;
+           }
+
+         h4 {
+            display: flex;
+            color: azure;
+            flex-wrap: wrap;
+            font-weight: 300 500 ;
+             }
+
+          h4 {
+             position: relative;
+             line-height: 2;
+             text-indent: 5px;
+             width: 40px;
+             height: 30px;
+             color: #fff;
+             border-radius: 0px px 0px 5px;
+             background: rgba(0, 0, 0, .7);
+        
+             }
+
+          h4 {
+             font-size: 9px;
+             margin-top: -25px;
+    
+             }
+   .tv_image {
+             width: 165px;
+             height: 95px;
+             object-fit: cover;
+             border-radius: 5px 5px 5px 5px;
+             justify-content: center;
+             }
+    .tv_item {
+             justify-content: center;
+             flex-flow: row wrap;
+             }
+
+    .tv_image:hover {
+            opacity: 0.4;
+             }
+
+         .tv {
+             flex-flow: row wrap;
+             display: flex;
+             justify-content: center;
+             gap:10px;
+             }
+       </style>   
+       </head>
+       <body>
+
+
+           <div class="tv">
+    <div onclick="ep_1()" class="tv_item">
+      <img src="https://iili.io/ByUb9se.jpg" class="tv_image" />
+        <h4>EP.1</h4>
+    </div>
+    <div onclick="ep_2()" class="tv_item">
+      <img src="https://iili.io/ByUb9se.jpg" class="tv_image" />
+      <h4>EP.2</h4>
+    </div>
+    <div onclick="ep_3()" class="tv_item">
+      <img src="https://iili.io/ByUb9se.jpg" class="tv_image" />
+       <h4>EP.3</h4>
+    </div>
+    <div onclick="ep_4()" class="tv_item">
+      <img src="https://iili.io/ByUb9se.jpg" class="tv_image" />
+      <h4>EP.4</h4>
+    </div>
+    <div onclick="ep_5()" class="tv_item">
+      <img src="https://iili.io/ByUb9se.jpg" class="tv_image" />
+      <h4>EP.5</h4>
+    </div>
+    <div onclick="ep_6()" class="tv_item">
+      <img src="https://iili.io/ByUb9se.jpg" class="tv_image" />
+      <h4>EP.6</h4>
+    </div>
+    <div onclick="ep_7()" class="tv_item">
+      <img src="https://iili.io/ByUb9se.jpg" class="tv_image" />
+      <h4>EP.7</h4>
+    </div>
+   
+   
+ 
+
+
+
+    
+      
+   <!-- Box Hide NSLink -->
+  <h2 style="font-size:0px; padding:-5px 0px 0px -5px;" id="objek"></h2>
+  <!-- connect json -->
+<script>
+
+function ep_1() { document.getElementById("objek").innerHTML = '<iframe src="intent://vod1.stream25.com/Bloodhounds-S02E01-TH.mp4.m3u8#Intent;scheme=https;type=video/*;package=com.wiseplay;S.title=live;end"></iframe>'
+};
+function ep_2() { document.getElementById("objek").innerHTML = '<iframe src="intent://vod1.stream25.com/Bloodhounds-S02E02-TH.mp4.m3u8#Intent;scheme=https;type=video/*;package=com.wiseplay;S.title=live;end"></iframe>'
+};
+function ep_3() { document.getElementById("objek").innerHTML = '<iframe src="intent://vod1.stream25.com/Bloodhounds-S02E03-TH.mp4.m3u8#Intent;scheme=https;type=video/*;package=com.wiseplay;S.title=live;end"></iframe>'
+};
+function ep_4() { document.getElementById("objek").innerHTML = '<iframe src="intent://vod1.stream25.com/Bloodhounds-S02E04-TH.mp4.m3u8#Intent;scheme=https;type=video/*;package=com.wiseplay;S.title=live;end"></iframe>'
+};
+function ep_5() { document.getElementById("objek").innerHTML = '<iframe src="intent://vod1.stream25.com/Bloodhounds-S02E05-TH.mp4.m3u8#Intent;scheme=https;type=video/*;package=com.wiseplay;S.title=live;end"></iframe>'
+};
+function ep_6() { document.getElementById("objek").innerHTML = '<iframe src="intent://vod1.stream25.com/Bloodhounds-S02E06-TH.mp4.m3u8#Intent;scheme=https;type=video/*;package=com.wiseplay;S.title=live;end"></iframe>'
+};
+function ep_7() { document.getElementById("objek").innerHTML = '<iframe src="intent://vod1.stream25.com/Bloodhounds-S02E07-TH.mp4.m3u8#Intent;scheme=https;type=video/*;package=com.wiseplay;S.title=live;end"></iframe>'
+};
+
+
+
+</script>
+  </body>
+</html>
+
