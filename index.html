@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>ENIGMA NAJMA6</title>
+    
+
+  </head>
+    
+  <body>
+  <!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Enigma najma6 - البث المباشر</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Video.js لدعم M3U8 -->
+  <link href="https://vjs.zencdn.net/8.6.1/video-js.css" rel="stylesheet" />
+  <script src="https://vjs.zencdn.net/8.6.1/video.min.js"></script>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #121212;
+    }
+
+    .video-js {
+      width: 100%;
+      height: 100%;
+    }
+
+    .video-js .vjs-big-play-button {
+      background-color: rgba(147, 51, 234, 0.9);
+      border: none;
+      border-radius: 50%;
+    }
+  </style>
+</head>
+
+
+  <div id="app"></div>
+
+  <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    const { useState, useEffect, useRef } = React;
+
+        const App = () => {
+            const [activeTab, setActiveTab] = useState('matches');
+            const [selectedVideo, setSelectedVideo] = useState(null);
+            const videoRef = useRef(null);
+            const playerRef = useRef(null);
+
+            // 🔴 هنا تضيف المباريات - يدعم M3U8 الآن!
+            const matches = [
+                {
+                    id: 1,
+                    title: 'beIN Sports 1 HD',
+                    time: 'พากษ์ไทย',
+                    thumbnail: 'https://123hd.net/wp-content/uploads/2026/08/Hanyi-Enters-the-Heart-2026-199x300.jpg',
+                    videoUrl: 'https://dumoviefree.com/cdn/hls/3534ced080629502960b4b3ba0644e1d/master.txt?s=1&d=', // ضع رابط M3U8 هنا
+                    type: 'm3u8'
+                },
+                {
+                    id: 2,
+                    title: 'ليفربول vs مانشستر سيتي',
+                    time: '20:00',
+                    thumbnail: 'https://images.unsplash.com/photo-1522778119026-d647f0596c20?w=400',
+                    videoUrl: 'https://hd.movie285.com/player/fk1oip/',
+                    type: 'youtube'
+                },
+                {
+                    id: 3,
+                    title: 'Mutiny',
+                    time: '2026',
+                    thumbnail: 'https://9.9nung.com/wp-content/uploads/2026/08/lsYSWqj6i2iyUDJoLA2cazFJYlC-185x278.jpg',
+                    videoUrl: 'https://vdohls.com/EG-5r5Uca_ep4/playlist.m3u8',
+                    type: 'm3u8'
+                }
+            ];
+
+            // 🎬 الأفلام
+            const movies = [
+                {
+                    id: 1,
+                    title: 'Avatar: The Way of Water',
+                    year: '2022',
+                    thumbnail: 'https://images.unsplash.com/photo-1536440136628-849c177e76a1?w=400',
+                    videoUrl: 'https://www.youtube.com/embed/jNQXAC9IVRw',
+                    type: 'youtube'
+                },
+                {
+                    id: 2,
+                    title: 'The Batman',
+                    year: '2022',
+                    thumbnail: 'https://images.unsplash.com/photo-1478720568477-152d9b164e26?w=400',
+                    videoUrl: 'https://www.youtube.com/embed/jNQXAC9IVRw',
+                    type: 'youtube'
+                }
+            ];
+
+            // 📺 المسلسلات
+            const series = [
+                {
+                    id: 1,
+                    title: 'Game of Thrones',
+                    seasons: '8 مواسم',
+                    thumbnail: 'https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?w=400',
+                    videoUrl: 'https://www.youtube.com/embed/jNQXAC9IVRw',
+                    type: 'youtube'
+                },
+                {
+                    id: 2,
+                    title: 'Breaking Bad',
+                    seasons: '5 مواسم',
+                    thumbnail: 'https://images.unsplash.com/photo-1440404653325-ab127d49abc1?w=400',
+                    videoUrl: 'https://www.youtube.com/embed/jNQXAC9IVRw',
+                    type: 'youtube'
+                }
+            ];
+
+            useEffect(() => {
+                if (selectedVideo && selectedVideo.type === 'm3u8' && videoRef.current) {
+                    playerRef.current = videojs(videoRef.current, {
+                        controls: true,
+                        autoplay: false,
+                        preload: 'auto',
+                        fluid: true,
+                        liveui: true
+                    });
+
+                    playerRef.current.src({
+                        src: selectedVideo.videoUrl,
+                        type: 'application/x-mpegURL'
+                    });
+
+                    return () => {
+                        if (playerRef.current) {
+                            playerRef.current.dispose();
+                        }
+                    };
+                }
+            }, [selectedVideo]);
+
+            const getCurrentContent = () => {
+                switch(activeTab) {
+                    case 'matches': return matches;
+                    case 'movies': return movies;
+                    case 'series': return series;
+                    default: return [];
+                }
+            };
+
+            const handleWhatsApp = () => {
+                window.open('https://whatsapp.com/channel/0029VbCJqP8AInPg1AECio1W', '_blank');
+            };
+
+            const PlayIcon = () => (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                </svg>
+            );
+
+            const FilmIcon = () => (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+                    <line x1="7" y1="2" x2="7" y2="22"></line>
+                    <line x1="17" y1="2" x2="17" y2="22"></line>
+                    <line x1="2" y1="12" x2="22" y2="12"></line>
+                </svg>
+            );
+
+            const TvIcon = () => (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <rect x="2" y="7" width="20" height="15" rx="2" ry="2"></rect>
+                    <polyline points="17 2 12 7 7 2"></polyline>
+                </svg>
+            );
+
+            const MessageIcon = () => (
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                </svg>
+            );
+
+            if (selectedVideo) {
+                return (
+                    <div className="min-h-screen">
+                        <div className="container mx-auto px-4 py-6">
+                            <button
+                                onClick={() => setSelectedVideo(null)}
+                                className="mb-4 px-6 py-2 bg-white text-purple-900 rounded-full font-bold hover:bg-purple-100 transition"
+                            >
+                     ย้อนกลับ⬅️ 
+                            </button>
+                            
+                            <div className="bg-black rounded-xl overflow-hidden shadow-2xl">
+                                {selectedVideo.type === 'm3u8' ? (
+                                    <video
+                                        ref={videoRef}
+                                        className="video-js vjs-default-skin vjs-big-play-centered aspect-video"
+                                    />
+                                ) : (
+                                    <iframe
+                                        src={selectedVideo.videoUrl}
+                                        className="w-full aspect-video"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowFullScreen
+                                    ></iframe>
+                                )}
+                            </div>
+                            
+                            <div className="mt-6 bg-white/10 backdrop-blur-lg rounded-xl p-6">
+                                <h2 className="text-2xl font-bold text-white mb-2">{selectedVideo.title}</h2>
+                                <p className="text-purple-200">{selectedVideo.time || selectedVideo.year || selectedVideo.seasons}</p>
+                                {selectedVideo.type === 'm3u8' && (
+                                    <div className="mt-3 inline-block px-4 py-2 bg-red-500/20 border border-red-500/50 rounded-lg">
+                                        <span className="text-red-300 text-sm font-bold">🔴 live</span>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                );
+            }
+
+            return (
+                <div className="min-h-screen">
+                    <div className="bg-white/10 backdrop-blur-lg border-b border-white/20">
+                        <div className="container mx-auto px-4 py-6">
+                            <div className="flex items-center justify-between flex-wrap gap-4">
+                                <h1 className="text-3xl font-bold text-white">Enigma najma6</h1>
+                                <button
+                                    onClick={handleWhatsApp}
+                                    className="flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-full font-bold transition shadow-lg"
+                                >
+                                    <MessageIcon />
+                                    قناة الواتساب
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="container mx-auto px-4 py-6">
+                        <div className="flex gap-4 mb-8 flex-wrap">
+                            <button
+                                onClick={() => setActiveTab('matches')}
+                                className={`flex items-center gap-2 px-8 py-4 rounded-xl font-bold transition shadow-lg ${
+                                    activeTab === 'matches'
+                                        ? 'bg-white text-purple-1900'
+                                        : 'bg-white/20 text-white hover:bg-white/30'
+                                }`}
+                            >
+                                <PlayIcon />
+                      หนังใหม่
+                            </button>
+                            <button
+                                onClick={() => setActiveTab('movies')}
+                                className={`flex items-center gap-2 px-8 py-4 rounded-xl font-bold transition shadow-lg ${
+                                    activeTab === 'movies'
+                                        ? 'bg-white text-purple-900'
+                                        : 'bg-white/20 text-white hover:bg-white/30'
+                                }`}
+                            >
+                                <FilmIcon />
+                            หนังฝรั่ง
+                            </button>
+                            <button
+                                onClick={() => setActiveTab('series')}
+                                className={`flex items-center gap-2 px-8 py-4 rounded-xl font-bold transition shadow-lg ${
+                                    activeTab === 'series'
+                                        ? 'bg-white text-purple-90'
+                                        : 'bg-white/20 text-white hover:bg-white/30'
+                                }`}
+                            >
+                                <TvIcon />
+                                المسلسلات
+                            </button>
+                        </div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                            {getCurrentContent().map((item) => (
+                                <div
+                                    key={item.id}
+                                    onClick={() => setSelectedVideo(item)}
+                                    className="bg-white/10 backdrop-blur-lg rounded-xl overflow-hidden cursor-pointer transform hover:scale-105 transition shadow-xl border border-white/20"
+                                >
+                                    <div className="relative">
+                                        <img
+                                            src={item.thumbnail}
+                                            alt={item.title}
+                                            className="w-full h-48 object-cover"
+                                        />
+                                        {item.type === 'm3u8' && (
+                                            <div className="absolute top-3 right-3 px-3 py-1 bg-red-500 rounded-full">
+                             <span className="text-white text-xs font-bold">🔴 พากษ์ไทย</span>
+
+
+                                            </div>
+                                        )}
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent flex items-center justify-center">
+                                            <div className="w-16 h-16 bg-white/90 rounded-full flex items-center justify-center">
+                                                <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" className="text-purple-900 mr-1">
+                                                    <polygon points="5 3 19 12 5 21 5 3"></polygon>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className="p-4">
+                                        <h3 className="text-white font-bold text-lg mb-1">{item.title}</h3>
+                                        <p className="text-purple-200 text-sm">
+                                            {item.time || item.year || item.seasons}
+                                        </p>
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="container mx-auto px-4 py-8 mt-12">
+                        <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 text-center border border-white/20">
+                            <p className="text-white text-lg font-bold mb-2">Enigma najma6</p>
+                            <p className="text-purple-200">أفضل منصة لمشاهدة المباريات والأفلام والمسلسلات</p>
+                        </div>
+                    </div>
+                </div>
+            );
+        };
+
+        ReactDOM.render(<App />, document.getElementById('app'));
+    </script>
+</body>
+
+</html>
+    
+  </body>
+  
+</html>
